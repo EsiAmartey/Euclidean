@@ -1,0 +1,63 @@
+import java.util.Scanner;
+
+class Crypto1 {
+public static void main(String[] args) {
+
+//Program Greeting
+
+System.out.print("Welcome! The purpose of this program is to find the GCD ");
+System.out.println("of any two given integers.");
+
+Scanner myScanner = new Scanner(System.in);
+
+int first = 0;
+int second = 0;
+
+do {
+	System.out.println("Please enter the first integer number:");
+	first = myScanner.nextInt();
+
+	System.out.println("Please enter the second integer number:");
+	second = myScanner.nextInt();
+	
+	if (first <= 0 || second <= 0) {
+		System.out.println("Please enter a positive integer.");
+	}
+    } while(first <= 0 && second <= 0);
+
+//Print table header
+System.out.println("----------------------------------------------------------------------------------------");
+System.out.println("\tq \tr1 \tr2 \tr \ts1 \ts2 \ts \tt1 \tt2 \tt");
+System.out.println("----------------------------------------------------------------------------------------");
+
+//Calculations
+int r1 = first;
+int r2 = second;
+int remainder = -1;
+int q = r1 / r2;
+int s1 = 1;
+int s2 = 0;
+int s = s1 - q * s2;
+int t1 = 0;
+int t2 = 1;
+int t = t1 -q * t2;
+
+while (remainder != 0){
+	remainder = r1 % r2;
+	q = r1 / r2;
+	s = s1 - (q * s2);
+	t = t1 - (q * t2);
+	System.out.println("\t" + q + "\t" + r1 + "\t" + r2 + "\t" + remainder + "\t" + s1 + "\t" + s2 + "\t" + s + "\t" + t1 + "\t" + t2 + "\t" + t);
+	r1 = r2;
+	r2 = remainder;
+	//s = s1 - (q * s2);
+	s1 = s2;
+	s2 = s;
+	//t = t1 - (q * t2);
+	t1 = t2;
+	t2 = t;
+}
+System.out.println("\t \t" + r1 + "\t" + r2 + "\t \t" + s1 + "\t" + s2 + "\t \t" + t1 + "\t" + t2);
+System.out.printf("The gcd(%d,%d) = %d, s = %d, and t = %d.\n\n",first, second, r1, s1, t1);
+}
+}
